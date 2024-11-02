@@ -45,9 +45,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define QWERTY MO(LAYER_QWERTY)
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
-#define SF_TAB ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_CAPS)
-#define SF_LPRN ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LABK)
-#define SF_RPRN ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RABK)
 #define SF_A LGUI_T(KC_A)
 #define SF_R LCTL_T(KC_R)
 #define SF_S LALT_T(KC_S)
@@ -58,6 +55,30 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define SF_I RALT_T(KC_I)
 #define SF_O RSFT_T(KC_O)
 #define WMGR(X) ACTION_TAP_DANCE_DOUBLE(G(KC_##X), LSG(KC_##X))
+
+enum tap_dances {
+    TD_TAB,
+    TD_LPRN,
+    TD_RPRN,
+    TD_W0,
+    TD_W1,
+    TD_W2,
+    TD_W3,
+    TD_W4,
+    TD_W5,
+    TD_W6,
+    TD_W7,
+    TD_W8,
+    TD_W9,
+    TD_WK,
+    TD_WJ,
+    TD_WH,
+    TD_WL,
+};
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_CAPS), [TD_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LABK), [TD_RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RABK), [TD_W0] = WMGR(0), [TD_W1] = WMGR(1), [TD_W2] = WMGR(2), [TD_W3] = WMGR(3), [TD_W4] = WMGR(4), [TD_W5] = WMGR(5), [TD_W6] = WMGR(6), [TD_W7] = WMGR(7), [TD_W8] = WMGR(8), [TD_W9] = WMGR(9), [TD_WK] = WMGR(9), [TD_WH] = WMGR(H), [TD_WJ] = WMGR(J), [TD_WL] = WMGR(L),
+};
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -123,11 +144,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_WIN_MGR] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       _______,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______, WMGR(7), WMGR(8), WMGR(9), WMGR(0), _______,
+       _______,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,   TD_W7,   TD_W8,   TD_W9,  TD_W0, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    WMGR(K), WMGR(4), WMGR(5), WMGR(6), WMGR(H), G(KC_ENT),
+       _______,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,      TD_WK,   TD_W4,   TD_W5,   TD_W6,  TD_WH, G(KC_ENT),
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,    WMGR(J), WMGR(1), WMGR(2), WMGR(3), WMGR(L), _______,
+       _______,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,      TD_WJ,   TD_W1,   TD_W2,   TD_W3,  TD_WL, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   _______, _______, G(KC_R),    _______,  _______
   //                            ╰───────────────────────────╯ ╰──────────────────╯
