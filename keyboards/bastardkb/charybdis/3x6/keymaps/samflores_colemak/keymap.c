@@ -77,7 +77,23 @@ enum tap_dances {
 };
 
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_CAPS), [TD_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LABK), [TD_RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RABK), [TD_W0] = WMGR(0), [TD_W1] = WMGR(1), [TD_W2] = WMGR(2), [TD_W3] = WMGR(3), [TD_W4] = WMGR(4), [TD_W5] = WMGR(5), [TD_W6] = WMGR(6), [TD_W7] = WMGR(7), [TD_W8] = WMGR(8), [TD_W9] = WMGR(9), [TD_WK] = WMGR(9), [TD_WH] = WMGR(H), [TD_WJ] = WMGR(J), [TD_WL] = WMGR(L),
+    [TD_TAB]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_CAPS),
+    [TD_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LABK),
+    [TD_RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RABK),
+    [TD_W0]   = WMGR(0), // go to workspace or send client to it
+    [TD_W1]   = WMGR(1), // go to workspace or send client to it
+    [TD_W2]   = WMGR(2), // go to workspace or send client to it
+    [TD_W3]   = WMGR(3), // go to workspace or send client to it
+    [TD_W4]   = WMGR(4), // go to workspace or send client to it
+    [TD_W5]   = WMGR(5), // go to workspace or send client to it
+    [TD_W6]   = WMGR(6), // go to workspace or send client to it
+    [TD_W7]   = WMGR(7), // go to workspace or send client to it
+    [TD_W8]   = WMGR(8), // go to workspace or send client to it
+    [TD_W9]   = WMGR(9), // go to workspace or send client to it
+    [TD_WK]   = WMGR(K), // navigate to client or move it
+    [TD_WH]   = WMGR(H), // navigate to client or move it
+    [TD_WJ]   = WMGR(J), // navigate to client or move it
+    [TD_WL]   = WMGR(L), // navigate to client or move it
 };
 
 // clang-format off
