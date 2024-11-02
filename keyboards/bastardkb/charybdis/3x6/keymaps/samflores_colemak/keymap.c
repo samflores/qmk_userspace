@@ -50,10 +50,10 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define SF_S LALT_T(KC_S)
 #define SF_T LSFT_T(KC_T)
 #define SF_D LT(LAYER_WIN_MGR, KC_D)
-#define SF_N RGUI_T(KC_N)
-#define SF_E RCTL_T(KC_E)
-#define SF_I RALT_T(KC_I)
-#define SF_O RSFT_T(KC_O)
+#define SF_N RSFT_T(KC_N)
+#define SF_E RALT_T(KC_E)
+#define SF_I RCTL_T(KC_I)
+#define SF_O RGUI_T(KC_O)
 #define WMGR(X) ACTION_TAP_DANCE_DOUBLE(G(KC_##X), LSG(KC_##X))
 
 enum tap_dances {
