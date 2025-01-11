@@ -112,9 +112,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        TD(TAB),  KC_Q,    KC_W,    SF_F,    TD(P),   KC_G,       KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN,  KC_QUOT,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_ESC,   SF_A,    SF_R,    SF_S,    SF_T,    SF_D,       KC_H,    SF_N,    SF_E,    SF_I,    SF_O,  KC_MINS,
+       KC_ESC,   SF_A,    SF_R,    SF_S,    SF_T,    SF_D,       KC_H,    SF_N,    SF_E,    SF_I,    SF_O,  S(KC_SCLN),
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       TD(LPRN), PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, TD(SLSH), TD(RPRN),
+       KC_BSLS, PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,   KC_MINS,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   QWERTY,   KC_SPC,   LOWER,      RAISE,  TD(ENT)
   //                            ╰───────────────────────────╯ ╰──────────────────╯
@@ -212,20 +212,28 @@ const uint32_t PROGMEM unicode_map[] = {
     [ROCKET]    = 0x1f680, // 🚀
 };
 
-const uint16_t PROGMEM acute_combo[]  = {SF_E, SF_T, COMBO_END};
-const uint16_t PROGMEM tilde_combo[]  = {SF_E, SF_N, COMBO_END};
-const uint16_t PROGMEM circ_combo[]   = {SF_E, KC_V, COMBO_END};
-const uint16_t PROGMEM cedil_combo[]  = {SF_E, KC_C, COMBO_END};
-const uint16_t PROGMEM grave_combo[]  = {SF_E, SF_I, COMBO_END};
-const uint16_t PROGMEM agrave_combo[] = {SF_E, SF_A, COMBO_END};
+const kint16_t PROGMEM acute_combo[]   = {SF_E, SF_T, COMBO_END};
+const uint16_t PROGMEM tilde_combo[]   = {SF_E, SF_N, COMBO_END};
+const uint16_t PROGMEM circ_combo[]    = {SF_E, KC_V, COMBO_END};
+const uint16_t PROGMEM cedil_combo[]   = {SF_E, KC_C, COMBO_END};
+const uint16_t PROGMEM grave_combo[]   = {SF_E, SF_I, COMBO_END};
+const uint16_t PROGMEM agrave_combo[]  = {SF_E, SF_A, COMBO_END};
+const uint16_t PROGMEM lparen_combo[]  = {KC_DOT, KC_COMM, COMBO_END};
+const uint16_t PROGMEM rparen_combo[]  = {KC_COMM, TD(SLSH), COMBO_END};
+const uint16_t PROGMEM lsqbrkt_combo[] = {KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM rsqbrkt_combo[] = {KC_U, KC_Y, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(acute_combo, RALT(KC_QUOT)), // '
-    COMBO(tilde_combo, RSA(KC_GRV)),   // ~
-    COMBO(circ_combo, RALT(KC_6)),     // ^
-    COMBO(cedil_combo, RALT(KC_COMM)), // ç
-    COMBO(grave_combo, RALT(KC_GRV)),  // `
-    COMBO(agrave_combo, UM(AGRAVE)),   // à
+    COMBO(acute_combo, RALT(KC_QUOT)),  // '
+    COMBO(tilde_combo, RSA(KC_GRV)),    // ~
+    COMBO(circ_combo, RALT(KC_6)),      // ^
+    COMBO(cedil_combo, RALT(KC_COMM)),  // ç
+    COMBO(grave_combo, RALT(KC_GRV)),   // `
+    COMBO(agrave_combo, UM(AGRAVE)),    // à
+    COMBO(lparen_combo, RSA(KC_LPRN)),  // (
+    COMBO(rparen_combo, RSA(KC_RPRN)),  // )
+    COMBO(lsqbrkt_combo, RSA(KC_LBRC)), // [
+    COMBO(rsqbrkt_combo, RSA(KC_RBRC)), // ]
 };
 
 #ifdef POINTING_DEVICE_ENABLE
