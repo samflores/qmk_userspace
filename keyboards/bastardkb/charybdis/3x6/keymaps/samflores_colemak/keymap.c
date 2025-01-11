@@ -212,7 +212,7 @@ const uint32_t PROGMEM unicode_map[] = {
     [ROCKET]    = 0x1f680, // 🚀
 };
 
-const kint16_t PROGMEM acute_combo[]   = {SF_E, SF_T, COMBO_END};
+const uint16_t PROGMEM acute_combo[]   = {SF_E, SF_T, COMBO_END};
 const uint16_t PROGMEM tilde_combo[]   = {SF_E, SF_N, COMBO_END};
 const uint16_t PROGMEM circ_combo[]    = {SF_E, KC_V, COMBO_END};
 const uint16_t PROGMEM cedil_combo[]   = {SF_E, KC_C, COMBO_END};
