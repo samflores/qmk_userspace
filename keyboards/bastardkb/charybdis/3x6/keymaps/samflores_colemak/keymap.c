@@ -47,6 +47,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 #define SF_F LT(LAYER_FN, KC_F)
+#define SF_ESC LT(QWERTY, KC_ESC)
 #define SF_A LGUI_T(KC_A)
 #define SF_R LCTL_T(KC_R)
 #define SF_S LALT_T(KC_S)
@@ -110,13 +111,13 @@ tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       TD(TAB),  KC_Q,    KC_W,    SF_F,    TD(P),   KC_G,       KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN,  KC_BSLS,
+       TD(TAB),  KC_Q,    KC_W,    SF_F,    KC_P,    KC_G,       KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN,  KC_BSLS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_ESC,   SF_A,    SF_R,    SF_S,    SF_T,    SF_D,       KC_H,    SF_N,    SF_E,    SF_I,    SF_O,  KC_MINS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX,  PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  TD(QUOT),
+       KC_PSCR,  PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  TD(QUOT),
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  QWERTY,   KC_SPC,   LOWER,      RAISE,  TD(ENT)
+                                 SF_ESC,  KC_SPC,   LOWER,      RAISE,  TD(ENT)
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
