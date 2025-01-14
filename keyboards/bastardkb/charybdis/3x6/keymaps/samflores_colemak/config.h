@@ -29,6 +29,7 @@
 /* Charybdis-specific features. */
 
 #ifdef POINTING_DEVICE_ENABLE
+#    define POINTING_DEVICE_DEBUG
 // Automatically enable the pointer layer when moving the trackball.  See also:
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
