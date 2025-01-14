@@ -26,7 +26,6 @@ enum charybdis_keymap_layers {
     LAYER_FN,
 };
 
-#define POINTING_DEVICE_DEBUG
 /** \brief Automatically enable sniping-mode on the pointer layer. */
 #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
 
