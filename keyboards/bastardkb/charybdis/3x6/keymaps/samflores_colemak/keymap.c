@@ -42,6 +42,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 enum tap_dances {
+    DEL,
     TAB,
     LPRN,
     RPRN,
@@ -68,6 +69,7 @@ enum tap_dances {
 #define WMGR(X) ACTION_TAP_DANCE_DOUBLE(G(KC_##X), LSG(KC_##X))
 
 tap_dance_action_t tap_dance_actions[] = {
+    [DEL]  = ACTION_TAP_DANCE_DOUBLE(KC_DEL, S(KC_DEL)),
     [TAB]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_CAPS),
     [LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LABK),
     [RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RABK),
@@ -137,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RALT, KC_RCTL, KC_RGUI, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,   TD(PSRC), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DB_TOGG,
+       XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,   TD(PSRC), TD(DEL), XXXXXXX, XXXXXXX, XXXXXXX, DB_TOGG,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   _______, _______, XXXXXXX,    _______, XXXXXXX
   //                            ╰───────────────────────────╯ ╰──────────────────╯
