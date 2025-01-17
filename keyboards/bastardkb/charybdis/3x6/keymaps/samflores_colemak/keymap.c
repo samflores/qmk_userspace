@@ -104,7 +104,7 @@ tap_dance_action_t tap_dance_actions[] = {
 #define QW_A LGUI_T(KC_A)
 #define QW_S LCTL_T(KC_S)
 #define QW_D LALT_T(KC_D)
-#define QW_F LQWT_T(KC_F)
+#define QW_F LSFT_T(KC_F)
 #define SF_D LT(LAYER_WIN_MGR, KC_D)
 #define SF_N RSFT_T(KC_N)
 #define SF_E RALT_T(KC_E)
@@ -203,8 +203,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-#define UNICODE_SELECTED_MODES UC_LNX
-
 enum unicode_names {
     AGRAVE,
     THUMBS_UP,
@@ -214,11 +212,11 @@ enum unicode_names {
 };
 
 const uint32_t PROGMEM unicode_map[] = {
-    [AGRAVE]    = 0x00E0,  // à
-    [THUMBS_UP] = 0x1f44D, // 👍
-    [THUMBS_UP] = 0x1f44E, // 👎
-    [FROG]      = 0x1F438, // 🐸
-    [ROCKET]    = 0x1f680, // 🚀
+    [AGRAVE]      = 0x00E0,  // à
+    [THUMBS_UP]   = 0x1f44D, // 👍
+    [THUMBS_DOWN] = 0x1f44E, // 👎
+    [FROG]        = 0x1F438, // 🐸
+    [ROCKET]      = 0x1f680, // 🚀
 };
 
 const uint16_t PROGMEM acute_combo[]   = {SF_E, SF_T, COMBO_END};
@@ -233,20 +231,28 @@ const uint16_t PROGMEM lsqbrkt_combo[] = {KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM rsqbrkt_combo[] = {KC_U, KC_Y, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
 const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
+const uint16_t PROGMEM tup_combo[]     = {KC_F, KC_P, COMBO_END};
+const uint16_t PROGMEM tdown_combo[]   = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM frog_combo[]    = {KC_W, KC_F, COMBO_END};
+const uint16_t PROGMEM rocket_combo[]  = {KC_X, KC_C, COMBO_END};
 
 combo_t key_combos[] = {
+    COMBO(qwerty_combo, DF(LAYER_QWERTY)), // QWERTY
+    COMBO(colemak_combo, DF(LAYER_BASE)),  // COLEMAK
     COMBO(acute_combo, RALT(KC_QUOT)),     // '
     COMBO(tilde_combo, RSA(KC_GRV)),       // ~
     COMBO(circ_combo, RALT(KC_6)),         // ^
     COMBO(cedil_combo, RALT(KC_COMM)),     // ç
     COMBO(grave_combo, RALT(KC_GRV)),      // `
-    COMBO(agrave_combo, UM(AGRAVE)),       // à
     COMBO(lparen_combo, KC_LPRN),          // (
     COMBO(rparen_combo, KC_RPRN),          // )
     COMBO(lsqbrkt_combo, KC_LBRC),         // [
     COMBO(rsqbrkt_combo, KC_RBRC),         // ]
-    COMBO(qwerty_combo, DF(LAYER_QWERTY)), // QWERTY
-    COMBO(colemak_combo, DF(LAYER_BASE)),  // COLEMAK
+    COMBO(agrave_combo, UM(AGRAVE)),       // à
+    COMBO(tup_combo, UM(THUMBS_UP)),       // 👍
+    COMBO(tdown_combo, UM(THUMBS_DOWN)),   // 👎
+    COMBO(frog_combo, UM(FROG)),           // 🐸
+    COMBO(rocket_combo, UM(ROCKET)),       // 🚀
 };
 
 #ifdef POINTING_DEVICE_ENABLE
@@ -285,6 +291,5 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #endif     // POINTING_DEVICE_ENABLE
 
 #ifdef RGB_MATRIX_ENABLE
-// Forward-declare this helper function since it is defined in rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
 #endif

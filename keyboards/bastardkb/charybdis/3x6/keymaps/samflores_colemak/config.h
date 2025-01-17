@@ -26,6 +26,8 @@
 #    define NO_ACTION_ONESHOT
 #endif // __arm__
 
+#define UNICODE_SELECTED_MODES UNICODE_MODE_LINUX
+
 /* Charybdis-specific features. */
 
 #ifdef POINTING_DEVICE_ENABLE
