@@ -93,7 +93,6 @@ tap_dance_action_t tap_dance_actions[] = {
 
 #define LOWER LT(LAYER_LOWER, KC_ESC)
 #define RAISE LT(LAYER_RAISE, KC_BSPC)
-#define QWERTY LT(LAYER_QWERTY, TD(TAB))
 #define SF_Z LT(LAYER_POINTER, KC_Z)
 #define SF_F LT(LAYER_FN, KC_F)
 #define SF_A LGUI_T(KC_A)
@@ -116,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_BSLS,  SF_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                 QWERTY,  KC_SPC,   LOWER,      RAISE,  TD(ENT)
+                                 TD(TAB),  KC_SPC,   LOWER,      RAISE,  TD(ENT)
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -222,18 +221,22 @@ const uint16_t PROGMEM lparen_combo[]  = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM rparen_combo[]  = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM lsqbrkt_combo[] = {KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM rsqbrkt_combo[] = {KC_U, KC_Y, COMBO_END};
+const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
+const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(acute_combo, RALT(KC_QUOT)), // '
-    COMBO(tilde_combo, RSA(KC_GRV)),   // ~
-    COMBO(circ_combo, RALT(KC_6)),     // ^
-    COMBO(cedil_combo, RALT(KC_COMM)), // ç
-    COMBO(grave_combo, RALT(KC_GRV)),  // `
-    COMBO(agrave_combo, UM(AGRAVE)),   // à
-    COMBO(lparen_combo, KC_LPRN),      // (
-    COMBO(rparen_combo, KC_RPRN),      // )
-    COMBO(lsqbrkt_combo, KC_LBRC),     // [
-    COMBO(rsqbrkt_combo, KC_RBRC),     // ]
+    COMBO(acute_combo, RALT(KC_QUOT)),     // '
+    COMBO(tilde_combo, RSA(KC_GRV)),       // ~
+    COMBO(circ_combo, RALT(KC_6)),         // ^
+    COMBO(cedil_combo, RALT(KC_COMM)),     // ç
+    COMBO(grave_combo, RALT(KC_GRV)),      // `
+    COMBO(agrave_combo, UM(AGRAVE)),       // à
+    COMBO(lparen_combo, KC_LPRN),          // (
+    COMBO(rparen_combo, KC_RPRN),          // )
+    COMBO(lsqbrkt_combo, KC_LBRC),         // [
+    COMBO(rsqbrkt_combo, KC_RBRC),         // ]
+    COMBO(qwerty_combo, TG(LAYER_QWERTY)), // QWERTY
+    COMBO(colemak_combo, TG(LAYER_BASE)),  // COLEMAK
 };
 
 #ifdef POINTING_DEVICE_ENABLE
