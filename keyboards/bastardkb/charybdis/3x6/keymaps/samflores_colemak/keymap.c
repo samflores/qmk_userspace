@@ -101,11 +101,19 @@ tap_dance_action_t tap_dance_actions[] = {
 #define SF_R LCTL_T(KC_R)
 #define SF_S LALT_T(KC_S)
 #define SF_T LSFT_T(KC_T)
+#define QW_A LGUI_T(KC_A)
+#define QW_S LCTL_T(KC_S)
+#define QW_D LALT_T(KC_D)
+#define QW_F LQWT_T(KC_F)
 #define SF_D LT(LAYER_WIN_MGR, KC_D)
 #define SF_N RSFT_T(KC_N)
 #define SF_E RALT_T(KC_E)
 #define SF_I RCTL_T(KC_I)
 #define SF_O RGUI_T(KC_O)
+#define QW_J RSFT_T(KC_J)
+#define QW_K RALT_T(KC_K)
+#define QW_L RCTL_T(KC_L)
+#define QW_SCLN RGUI_T(KC_SCLN)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -159,13 +167,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_QWERTY] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       _______,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_DEL,
+       KC_AMPR,    KC_Q,    KC_W,   KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, TD(QUOT),
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, _______,
+       KC_ASTR,    SF_A,    QW_S,   QW_D,    QW_F,    KC_G,       KC_H,    QW_J,    QW_K,    QW_L, QW_SCLN, KC_MINS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______,    SF_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT,TD(SLSH), _______,
+       KC_BSLS,    SF_Z,    KC_X,   KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_EQL,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  _______, _______, _______,    _______,  _______
+                                 TD(TAB),  KC_SPC,   LOWER,      RAISE,  TD(ENT)
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -237,8 +245,8 @@ combo_t key_combos[] = {
     COMBO(rparen_combo, KC_RPRN),          // )
     COMBO(lsqbrkt_combo, KC_LBRC),         // [
     COMBO(rsqbrkt_combo, KC_RBRC),         // ]
-    COMBO(qwerty_combo, TG(LAYER_QWERTY)), // QWERTY
-    COMBO(colemak_combo, TG(LAYER_BASE)),  // COLEMAK
+    COMBO(qwerty_combo, DF(LAYER_QWERTY)), // QWERTY
+    COMBO(colemak_combo, DF(LAYER_BASE)),  // COLEMAK
 };
 
 #ifdef POINTING_DEVICE_ENABLE
