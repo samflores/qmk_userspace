@@ -97,7 +97,7 @@ tap_dance_action_t tap_dance_actions[] = {
 #define NUMBER LT(LAYER_NUMBER, KC_ESC)
 #define NAVIG LT(LAYER_RAISE, KC_BSPC)
 #define MEDIA LT(LAYER_MEDIA, KC_ENT)
-#define SF_Z LT(LAYER_POINTER, KC_Z)
+#define SF_C LT(LAYER_POINTER, KC_C)
 #define SF_F LT(LAYER_FN, KC_F)
 #define SF_A LGUI_T(KC_A)
 #define SF_R LCTL_T(KC_R)
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_ASTR,  SF_A,    SF_R,    SF_S,    SF_T,    KC_D,       KC_H,    SF_N,    SF_E,    SF_I,    SF_O,  KC_MINS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_BSLS,  SF_Z,    KC_X,    KC_C,    SF_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
+       KC_BSLS,  KC_Z,    KC_X,    SF_C,    SF_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                  TD(TAB),  KC_SPC, NUMBER,      NAVIG,  MEDIA
   //                            ╰───────────────────────────╯ ╰──────────────────╯
@@ -161,9 +161,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX,    XXXXXXX, MS_LEFT, MS_UP,   MS_DOWN, MS_RGHT, KC_MUTE,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, _______, DRGSCRL, SNIPING, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, SNIPING, DRGSCRL, _______, XXXXXXX,
+       XXXXXXX, XXXXXXX, SNIPING, _______, DRGSCRL, XXXXXXX,    XXXXXXX, XXXXXXX, SNIPING, DRGSCRL, _______, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_BTN2, KC_BTN1, KC_BTN3,    KC_BTN3, KC_BTN1
+                                  KC_BTN3, KC_BTN1, KC_BTN2,    KC_BTN2, KC_BTN1
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -173,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_ASTR,    SF_A,    QW_S,   QW_D,    QW_F,    KC_G,       KC_H,    QW_J,    QW_K,    QW_L, QW_SCLN, KC_MINS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_BSLS,    SF_Z,    KC_X,   KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_EQL,
+       KC_BSLS,    KC_Z,    KC_X,   SF_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_EQL,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                  TD(TAB),  KC_SPC,  NUMBER,      NAVIG,  MEDIA
   //                            ╰───────────────────────────╯ ╰──────────────────╯
