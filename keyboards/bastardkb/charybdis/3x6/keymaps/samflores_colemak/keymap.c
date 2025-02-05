@@ -237,7 +237,7 @@ const uint32_t PROGMEM unicode_map[] = {
 const uint16_t PROGMEM acute_combo[]   = {SF_E, SF_T, COMBO_END};
 const uint16_t PROGMEM tilde_combo[]   = {SF_E, SF_N, COMBO_END};
 const uint16_t PROGMEM circ_combo[]    = {SF_E, SF_V, COMBO_END};
-const uint16_t PROGMEM cedil_combo[]   = {SF_E, KC_C, COMBO_END};
+const uint16_t PROGMEM cedil_combo[]   = {SF_E, SF_C, COMBO_END};
 const uint16_t PROGMEM grave_combo[]   = {SF_E, SF_I, COMBO_END};
 const uint16_t PROGMEM agrave_combo[]  = {SF_E, SF_A, COMBO_END};
 const uint16_t PROGMEM lparen_combo[]  = {KC_M, SF_COMM, COMBO_END};
@@ -247,9 +247,9 @@ const uint16_t PROGMEM rsqbrkt_combo[] = {KC_U, KC_Y, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
 const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
 const uint16_t PROGMEM tup_combo[]     = {KC_F, KC_P, COMBO_END};
-const uint16_t PROGMEM tdown_combo[]   = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM tdown_combo[]   = {SF_C, KC_V, COMBO_END};
 const uint16_t PROGMEM frog_combo[]    = {KC_W, KC_F, COMBO_END};
-const uint16_t PROGMEM rocket_combo[]  = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM rocket_combo[]  = {KC_X, SF_C, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(qwerty_combo, DF(LAYER_QWERTY)), // QWERTY
