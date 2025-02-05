@@ -98,6 +98,7 @@ tap_dance_action_t tap_dance_actions[] = {
 #define NAVIG LT(LAYER_RAISE, KC_BSPC)
 #define MEDIA LT(LAYER_MEDIA, KC_ENT)
 #define SF_C LT(LAYER_POINTER, KC_C)
+#define SF_COMM LT(LAYER_POINTER, KC_COMM)
 #define SF_F LT(LAYER_FN, KC_F)
 #define SF_A LGUI_T(KC_A)
 #define SF_R LCTL_T(KC_R)
@@ -125,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_ASTR,  SF_A,    SF_R,    SF_S,    SF_T,    KC_D,       KC_H,    SF_N,    SF_E,    SF_I,    SF_O,  KC_MINS,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       KC_BSLS,  KC_Z,    KC_X,    SF_C,    SF_V,    KC_B,       KC_K,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
+       KC_BSLS,  KC_Z,    KC_X,    SF_C,    SF_V,    KC_B,       KC_K,    KC_M, SF_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                  TD(TAB),  KC_SPC, NUMBER,      NAVIG,  MEDIA
   //                            ╰───────────────────────────╯ ╰──────────────────╯
@@ -161,7 +162,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX,    XXXXXXX, MS_LEFT, MS_UP,   MS_DOWN, MS_RGHT, KC_MUTE,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, SNIPING, _______, DRGSCRL, XXXXXXX,    XXXXXXX, XXXXXXX, SNIPING, DRGSCRL, _______, XXXXXXX,
+       XXXXXXX, XXXXXXX, SNIPING, _______, DRGSCRL, XXXXXXX,    XXXXXXX, DRGSCRL, _______, SNIPING, KC_BTN3, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   KC_BTN3, KC_BTN1, KC_BTN2,    KC_BTN2, KC_BTN1
   //                            ╰───────────────────────────╯ ╰──────────────────╯
