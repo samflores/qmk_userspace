@@ -19,7 +19,7 @@
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_NUMBER,
-    LAYER_RAISE,
+    LAYER_NAVIG,
     LAYER_POINTER,
     LAYER_QWERTY,
     LAYER_WIN_MGR,
@@ -95,7 +95,7 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 #define NUMBER LT(LAYER_NUMBER, KC_ESC)
-#define NAVIG LT(LAYER_RAISE, KC_BSPC)
+#define NAVIG LT(LAYER_NAVIG, KC_BSPC)
 #define MEDIA LT(LAYER_MEDIA, KC_ENT)
 #define SF_C LT(LAYER_POINTER, KC_C)
 #define SF_COMM LT(LAYER_POINTER, KC_COMM)
@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
-  [LAYER_RAISE] = LAYOUT(
+  [LAYER_NAVIG] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AC_TOGG,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
@@ -158,11 +158,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_POINTER] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, DPI_MOD, S_D_MOD,    S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX,  EE_CLR, QK_BOOT,
+       QK_BOOT, EE_CLR, XXXXXXX, DPI_RMOD,S_D_RMOD, XXXXXXX,    XXXXXXX, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX,    XXXXXXX, MS_LEFT, MS_UP,   MS_DOWN, MS_RGHT, KC_MUTE,
+       XXXXXXX, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX,    KC_WBAK, KC_RSFT, KC_RALT, KC_RCTL, KC_RGUI, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, SNIPING, _______, DRGSCRL, XXXXXXX,    XXXXXXX, DRGSCRL, _______, SNIPING, KC_BTN3, XXXXXXX,
+       XXXXXXX, XXXXXXX, SNIPING, _______, DRGSCRL, XXXXXXX,    KC_WFWD, DRGSCRL, _______, SNIPING, KC_BTN3, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   KC_BTN3, KC_BTN1, KC_BTN2,    KC_BTN2, KC_BTN1
   //                            ╰───────────────────────────╯ ╰──────────────────╯
