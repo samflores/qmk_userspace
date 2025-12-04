@@ -67,6 +67,7 @@ enum tap_dances {
     WJ,
     WH,
     WL,
+    POINTER_TOGGLE,
 };
 
 #define WMGR(X) ACTION_TAP_DANCE_DOUBLE(G(KC_##X), LSG(KC_##X))
@@ -94,6 +95,7 @@ tap_dance_action_t tap_dance_actions[] = {
     [WH]   = WMGR(H),
     [WJ]   = WMGR(J),
     [WL]   = WMGR(L),
+    [POINTER_TOGGLE] = ACTION_TAP_DANCE_LAYER_TOGGLE(LAYER_POINTER),
 };
 
 #define NUMBER LT(LAYER_NUMBER, KC_ESC)
@@ -203,11 +205,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_FN] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F7,  KC_F8,  KC_F9,  KC_F10, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F5,   KC_F6,   KC_F7,   KC_F8, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F4,  KC_F5,  KC_F6,  KC_F11, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F1,  KC_F2,  KC_F3,  KC_F12, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   _______, _______, _______,    _______,  _______
   //                            ╰───────────────────────────╯ ╰──────────────────╯
@@ -267,6 +269,7 @@ const uint32_t PROGMEM unicode_map[] = {
     [ROCKET]      = 0x1f680, // 🚀
 };
 
+const uint16_t PROGMEM pointer_combo[] = {SF_T, SF_C, COMBO_END};
 const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
 const uint16_t PROGMEM web_combo[]     = {SF_O, KC_W, COMBO_END};
@@ -305,6 +308,7 @@ combo_t key_combos[] = {
     COMBO(tdown_combo, UM(THUMBS_DOWN)),   // 👎
     COMBO(frog_combo, UM(FROG)),           // 🐸
     COMBO(rocket_combo, UM(ROCKET)),       // 🚀
+    COMBO(pointer_combo, TD(POINTER_TOGGLE)), // Toggle pointer layer
 };
 
 #ifdef POINTING_DEVICE_ENABLE
