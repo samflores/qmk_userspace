@@ -67,33 +67,35 @@ enum tap_dances {
     WJ,
     WH,
     WL,
+    POINTER_TOGGLE,
 };
 
 #define WMGR(X) ACTION_TAP_DANCE_DOUBLE(G(KC_##X), LSG(KC_##X))
 
 tap_dance_action_t tap_dance_actions[] = {
-    [DEL]  = ACTION_TAP_DANCE_DOUBLE(KC_DEL, S(KC_DEL)),
-    [TAB]  = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_CAPS),
-    [LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LABK),
-    [RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RABK),
-    [SLSH] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_BSLS),
-    [ENT]  = ACTION_TAP_DANCE_DOUBLE(KC_ENT, G(KC_ENT)),
-    [QUOT] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_DQT),
-    [PSRC] = ACTION_TAP_DANCE_DOUBLE(KC_PSCR, S(KC_PSCR)),
-    [W0]   = WMGR(0), // go to workspace or send client to it
-    [W1]   = WMGR(1),
-    [W2]   = WMGR(2),
-    [W3]   = WMGR(3),
-    [W4]   = WMGR(4),
-    [W5]   = WMGR(5),
-    [W6]   = WMGR(6),
-    [W7]   = WMGR(7),
-    [W8]   = WMGR(8),
-    [W9]   = WMGR(9),
-    [WK]   = WMGR(K), // focus on client or move it
-    [WH]   = WMGR(H),
-    [WJ]   = WMGR(J),
-    [WL]   = WMGR(L),
+    [DEL]            = ACTION_TAP_DANCE_DOUBLE(KC_DEL, S(KC_DEL)),
+    [TAB]            = ACTION_TAP_DANCE_DOUBLE(KC_TAB, KC_CAPS),
+    [LPRN]           = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LABK),
+    [RPRN]           = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RABK),
+    [SLSH]           = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_BSLS),
+    [ENT]            = ACTION_TAP_DANCE_DOUBLE(KC_ENT, G(KC_ENT)),
+    [QUOT]           = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_DQT),
+    [PSRC]           = ACTION_TAP_DANCE_DOUBLE(KC_PSCR, S(KC_PSCR)),
+    [W0]             = WMGR(0), // go to workspace or send client to it
+    [W1]             = WMGR(1),
+    [W2]             = WMGR(2),
+    [W3]             = WMGR(3),
+    [W4]             = WMGR(4),
+    [W5]             = WMGR(5),
+    [W6]             = WMGR(6),
+    [W7]             = WMGR(7),
+    [W8]             = WMGR(8),
+    [W9]             = WMGR(9),
+    [WK]             = WMGR(K), // focus on client or move it
+    [WH]             = WMGR(H),
+    [WJ]             = WMGR(J),
+    [WL]             = WMGR(L),
+    [POINTER_TOGGLE] = ACTION_TAP_DANCE_LAYER_TOGGLE(LAYER_POINTER),
 };
 
 #define NUMBER LT(LAYER_NUMBER, KC_ESC)
@@ -203,11 +205,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_FN] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F7,  KC_F8,  KC_F9,  KC_F10, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F5,   KC_F6,   KC_F7,   KC_F8, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F4,  KC_F5,  KC_F6,  KC_F11, _______,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    _______,   KC_F1,  KC_F2,  KC_F3,  KC_F12, _______,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   _______, _______, _______,    _______,  _______
   //                            ╰───────────────────────────╯ ╰──────────────────╯
@@ -267,6 +269,7 @@ const uint32_t PROGMEM unicode_map[] = {
     [ROCKET]      = 0x1f680, // 🚀
 };
 
+const uint16_t PROGMEM pointer_combo[] = {SF_T, SF_C, COMBO_END};
 const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
 const uint16_t PROGMEM web_combo[]     = {SF_O, KC_W, COMBO_END};
@@ -287,24 +290,25 @@ const uint16_t PROGMEM frog_combo[]    = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM rocket_combo[]  = {KC_X, SF_C, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(qwerty_combo, DF(LAYER_QWERTY)), // QWERTY
-    COMBO(colemak_combo, DF(LAYER_BASE)),  // COLEMAK
-    COMBO(web_combo, OSL(LAYER_WEB)),      // Web
-    COMBO(tools_combo, OSL(LAYER_TOOLS)),  // Tools
-    COMBO(acute_combo, RALT(KC_QUOT)),     // '
-    COMBO(tilde_combo, RSA(KC_GRV)),       // ~
-    COMBO(circ_combo, RALT(KC_6)),         // ^
-    COMBO(cedil_combo, RALT(KC_COMM)),     // ç
-    COMBO(grave_combo, RALT(KC_GRV)),      // `
-    COMBO(lparen_combo, KC_LPRN),          // (
-    COMBO(rparen_combo, KC_RPRN),          // )
-    COMBO(lsqbrkt_combo, KC_LBRC),         // [
-    COMBO(rsqbrkt_combo, KC_RBRC),         // ]
-    COMBO(agrave_combo, UM(AGRAVE)),       // à
-    COMBO(tup_combo, UM(THUMBS_UP)),       // 👍
-    COMBO(tdown_combo, UM(THUMBS_DOWN)),   // 👎
-    COMBO(frog_combo, UM(FROG)),           // 🐸
-    COMBO(rocket_combo, UM(ROCKET)),       // 🚀
+    COMBO(qwerty_combo, DF(LAYER_QWERTY)),    // QWERTY
+    COMBO(colemak_combo, DF(LAYER_BASE)),     // COLEMAK
+    COMBO(web_combo, OSL(LAYER_WEB)),         // Web
+    COMBO(tools_combo, OSL(LAYER_TOOLS)),     // Tools
+    COMBO(acute_combo, RALT(KC_QUOT)),        // '
+    COMBO(tilde_combo, RSA(KC_GRV)),          // ~
+    COMBO(circ_combo, RALT(KC_6)),            // ^
+    COMBO(cedil_combo, RALT(KC_COMM)),        // ç
+    COMBO(grave_combo, RALT(KC_GRV)),         // `
+    COMBO(lparen_combo, KC_LPRN),             // (
+    COMBO(rparen_combo, KC_RPRN),             // )
+    COMBO(lsqbrkt_combo, KC_LBRC),            // [
+    COMBO(rsqbrkt_combo, KC_RBRC),            // ]
+    COMBO(agrave_combo, UM(AGRAVE)),          // à
+    COMBO(tup_combo, UM(THUMBS_UP)),          // 👍
+    COMBO(tdown_combo, UM(THUMBS_DOWN)),      // 👎
+    COMBO(frog_combo, UM(FROG)),              // 🐸
+    COMBO(rocket_combo, UM(ROCKET)),          // 🚀
+    COMBO(pointer_combo, TD(POINTER_TOGGLE)), // Toggle pointer layer
 };
 
 #ifdef POINTING_DEVICE_ENABLE
