@@ -70,6 +70,19 @@ enum tap_dances {
     POINTER_TOGGLE,
 };
 
+/** \brief Custom keycodes for axis-locked drag-scroll. */
+enum samflores_keycodes {
+    SCROLL_H_ONLY = SAFE_RANGE, // Hold: drag-scroll, horizontal axis only.
+    SCROLL_V_ONLY,              // Hold: drag-scroll, vertical axis only.
+};
+
+/** \brief Which axis drag-scroll emits; set by the scroll keys. */
+enum scroll_axis_mode {
+    SCROLL_AXIS_BOTH,
+    SCROLL_AXIS_H_ONLY,
+    SCROLL_AXIS_V_ONLY,
+};
+
 #define WMGR(X) ACTION_TAP_DANCE_DOUBLE(G(KC_##X), LSG(KC_##X))
 
 tap_dance_action_t tap_dance_actions[] = {
@@ -173,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX,    KC_WBAK, KC_RSFT, KC_RALT, KC_RCTL, KC_RGUI, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, XXXXXXX, SNIPING, _______, DRGSCRL, XXXXXXX,    KC_WFWD, DRGSCRL, _______, SNIPING, KC_BTN3, XXXXXXX,
+       SCROLL_H_ONLY, XXXXXXX, SCROLL_V_ONLY, _______, DRGSCRL, XXXXXXX,    KC_WFWD, DRGSCRL, _______, SNIPING, KC_BTN3, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                   KC_BTN3, KC_BTN1, KC_BTN2,    KC_BTN2, KC_BTN1
   //                            ╰───────────────────────────╯ ╰──────────────────╯
@@ -337,6 +350,48 @@ void matrix_scan_user(void) {
     }
 }
 #    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
+/** \brief Current drag-scroll axis restriction. */
+static enum scroll_axis_mode scroll_axis = SCROLL_AXIS_BOTH;
+
+/** \brief Axis-locked scroll keys; DRGSCRL resets to both axes. */
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case DRGSCRL:
+            if (record->event.pressed) {
+                scroll_axis = SCROLL_AXIS_BOTH;
+            }
+            break;
+        case SCROLL_H_ONLY:
+            scroll_axis = SCROLL_AXIS_H_ONLY;
+            charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
+            break;
+        case SCROLL_V_ONLY:
+            scroll_axis = SCROLL_AXIS_V_ONLY;
+            charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
+            break;
+    }
+    return true;
+}
+
+/* If CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE is defined, merge this with
+ * the auto-pointer-layer hook above (only one definition is allowed). */
+/** \brief Zero the unwanted scroll axis (runs after charybdis' conversion). */
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (charybdis_get_pointer_dragscroll_enabled()) {
+        switch (scroll_axis) {
+            case SCROLL_AXIS_H_ONLY:
+                mouse_report.v = 0;
+                break;
+            case SCROLL_AXIS_V_ONLY:
+                mouse_report.h = 0;
+                break;
+            default:
+                break;
+        }
+    }
+    return mouse_report;
+}
 
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
