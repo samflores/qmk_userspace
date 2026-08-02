@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "raw_hid.h"
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
@@ -402,3 +403,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGB_MATRIX_ENABLE
 void rgb_matrix_update_pwm_buffers(void);
 #endif
+
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+    if (length >= 1 && data[0] == 0x01) {
+        uint8_t response[32] = {0};
+        response[0] = 0x01;
+        response[1] = autocorrect_is_enabled() ? 1 : 0;
+        raw_hid_send(response, sizeof(response));
+    }
+}
