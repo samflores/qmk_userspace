@@ -329,6 +329,14 @@ const uint16_t PROGMEM circ_combo[]    = {SF_E, SF_V, COMBO_END};
 const uint16_t PROGMEM cedil_combo[]   = {SF_E, SF_C, COMBO_END};
 const uint16_t PROGMEM grave_combo[]   = {SF_E, SF_I, COMBO_END};
 const uint16_t PROGMEM agrave_combo[]  = {SF_E, SF_A, COMBO_END};
+/* Engrammer diacritics: same physical pairs as the Colemak versions above,
+ * anchored on EN_T (E's position on Engrammer). */
+const uint16_t PROGMEM engram_acute_combo[]  = {EN_T, EN_A, COMBO_END};
+const uint16_t PROGMEM engram_tilde_combo[]  = {EN_T, EN_H, COMBO_END};
+const uint16_t PROGMEM engram_circ_combo[]   = {EN_T, KC_K, COMBO_END};
+const uint16_t PROGMEM engram_cedil_combo[]  = {EN_T, EN_J, COMBO_END};
+const uint16_t PROGMEM engram_grave_combo[]  = {EN_T, EN_S, COMBO_END};
+const uint16_t PROGMEM engram_agrave_combo[] = {EN_T, EN_C, COMBO_END};
 const uint16_t PROGMEM lparen_combo[]  = {KC_M, SF_COMM, COMBO_END};
 const uint16_t PROGMEM rparen_combo[]  = {SF_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM lsqbrkt_combo[] = {KC_L, KC_U, COMBO_END};
@@ -364,6 +372,12 @@ combo_t key_combos[] = {
     COMBO(lsqbrkt_combo, KC_LBRC),           // [
     COMBO(rsqbrkt_combo, KC_RBRC),           // ]
     COMBO(agrave_combo, UM(AGRAVE)),         // à
+    COMBO(engram_acute_combo, RALT(KC_QUOT)),  // Engrammer ´ (T + A)
+    COMBO(engram_tilde_combo, RSA(KC_GRV)),    // Engrammer ~ (T + H)
+    COMBO(engram_circ_combo, RALT(KC_6)),      // Engrammer ^ (T + K)
+    COMBO(engram_cedil_combo, RALT(KC_COMM)),  // Engrammer ç (T + J)
+    COMBO(engram_grave_combo, RALT(KC_GRV)),   // Engrammer ` (T + S)
+    COMBO(engram_agrave_combo, UM(AGRAVE)),    // Engrammer à (T + C)
     COMBO(tup_combo, UM(THUMBS_UP)),         // 👍
     COMBO(tdown_combo, UM(THUMBS_DOWN)),     // 👎
     COMBO(frog_combo, UM(FROG)),             // 🐸
