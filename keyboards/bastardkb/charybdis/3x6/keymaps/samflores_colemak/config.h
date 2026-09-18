@@ -39,6 +39,17 @@
 #endif
 #define RGBLIGHT_LED_COUNT 41
 
+/* bk_pointing_device references these constants unguarded but takes them
+ * from the argos module header; without argos, provide them here. */
+#ifndef COMMUNITY_MODULE_ARGOS_ENABLE
+enum pointing_device_type {
+    pointing_device_type_unknown = 0,
+    pointing_device_type_trackpad_procyon = 1,
+    pointing_device_type_trackball = 2,
+    pointing_device_type_trackpad_cirque = 3,
+};
+#endif
+
 /* Charybdis-specific features. */
 
 #ifdef POINTING_DEVICE_ENABLE
