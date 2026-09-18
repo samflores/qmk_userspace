@@ -376,7 +376,7 @@ combo_t key_combos[] = {
     COMBO(lsqbrkt_combo, KC_LBRC),           // [
     COMBO(rsqbrkt_combo, KC_RBRC),           // ]
     COMBO(agrave_combo, UM(AGRAVE)),         // à
-    COMBO(engram_acute_combo, RALT(KC_QUOT)),  // Engrammer ´ (T + A)
+    COMBO(engram_acute_combo, RALT(KC_QUOT)),  // Engrammer ' (T + A)
     COMBO(engram_tilde_combo, RSA(KC_GRV)),    // Engrammer ~ (T + H)
     COMBO(engram_circ_combo, RALT(KC_6)),      // Engrammer ^ (T + K)
     COMBO(engram_cedil_combo, RALT(KC_COMM)),  // Engrammer ç (T + J)
