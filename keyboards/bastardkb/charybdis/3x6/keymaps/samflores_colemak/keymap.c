@@ -29,6 +29,7 @@ enum charybdis_keymap_layers {
     LAYER_MEDIA,
     LAYER_WEB,
     LAYER_TOOLS,
+    LAYER_ENGRAMMER,
 };
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
@@ -134,6 +135,19 @@ tap_dance_action_t tap_dance_actions[] = {
 #define QW_K RALT_T(KC_K)
 #define QW_L RCTL_T(KC_L)
 #define QW_SCLN RGUI_T(KC_SCLN)
+/* Engrammer home-row mods; same positions as the Colemak mods
+ * (GUI CTL ALT SFT | SFT ALT CTL GUI). */
+#define EN_C LGUI_T(KC_C)
+#define EN_I LCTL_T(KC_I)
+#define EN_E LALT_T(KC_E)
+#define EN_A LSFT_T(KC_A)
+#define EN_H RSFT_T(KC_H)
+#define EN_T RALT_T(KC_T)
+#define EN_S RCTL_T(KC_S)
+#define EN_N RGUI_T(KC_N)
+/* Pointer-layer hold keys; same positions as SF_C and SF_COMM. */
+#define EN_J LT(LAYER_POINTER, KC_J)
+#define EN_M LT(LAYER_POINTER, KC_M)
 #define SF_QUTE RGUI(RCTL(KC_Q))
 #define SF_FRFX RGUI(RCTL(KC_F))
 #define SF_CHRM RGUI(RCTL(KC_C))
@@ -202,6 +216,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
                                  TD(TAB),  KC_SPC,  NUMBER,      NAVIG,  MEDIA
   //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+  [LAYER_ENGRAMMER] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+       KC_AMPR,    KC_B,    KC_Y,    KC_O,    KC_U, TD(QUOT),    KC_SCLN,    KC_L,    KC_D,    KC_W,    KC_V,    KC_Z,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       KC_ASTR,   EN_C,    EN_I,    EN_E,    EN_A, KC_COMM,     KC_MINS,   EN_H,    EN_T,    EN_S,    EN_N,    KC_Q,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       KC_BSLS,   KC_G,    KC_X,    EN_J,    KC_K, KC_DOT,     KC_SLSH,    KC_R,    EN_M,    KC_F,    KC_P,   KC_EQL,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                 TD(TAB),  KC_SPC,  NUMBER,      NAVIG,  MEDIA
+  //                            ╰───────────────────────────╯ ╰───────────────────╯
   ),
 
   [LAYER_WIN_MGR] = LAYOUT(
@@ -285,6 +311,7 @@ const uint32_t PROGMEM unicode_map[] = {
 const uint16_t PROGMEM pointer_combo[] = {SF_T, SF_C, COMBO_END};
 const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
+const uint16_t PROGMEM engram_combo[]  = {KC_Z, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM web_combo[]     = {SF_O, KC_W, COMBO_END};
 const uint16_t PROGMEM tools_combo[]   = {SF_O, SF_T, COMBO_END};
 const uint16_t PROGMEM acute_combo[]   = {SF_E, SF_T, COMBO_END};
@@ -302,7 +329,13 @@ const uint16_t PROGMEM tdown_combo[]   = {SF_C, KC_V, COMBO_END};
 const uint16_t PROGMEM frog_combo[]    = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM rocket_combo[]  = {KC_X, SF_C, COMBO_END};
 
+/* Indexed combo events; positions must line up with key_combos[] below. */
+enum combo_events {
+    ENGRAM_TOGGLE,
+};
+
 combo_t key_combos[] = {
+    [ENGRAM_TOGGLE] = COMBO_ACTION(engram_combo),
     COMBO(qwerty_combo, DF(LAYER_QWERTY)),   // QWERTY
     COMBO(colemak_combo, DF(LAYER_BASE)),    // COLEMAK
     COMBO(web_combo, OSL(LAYER_WEB)),        // Web
@@ -323,6 +356,23 @@ combo_t key_combos[] = {
     COMBO(rocket_combo, UM(ROCKET)),         // 🚀
     COMBO(pointer_combo, TG(LAYER_POINTER)), // Toggle pointer layer
 };
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch (combo_index) {
+        case ENGRAM_TOGGLE:
+            /* Z + / toggles Engrammer. On Colemak and QWERTY those are the
+             * bottom-row Z and /; on Engrammer both live on the right hand
+             * (top-outer Z, bottom-inner /), so the same chord switches back. */
+            if (pressed) {
+                if (default_layer_state == ((layer_state_t)1 << LAYER_ENGRAMMER)) {
+                    set_single_default_layer(LAYER_BASE);
+                } else {
+                    set_single_default_layer(LAYER_ENGRAMMER);
+                }
+            }
+            break;
+    }
+}
 
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
