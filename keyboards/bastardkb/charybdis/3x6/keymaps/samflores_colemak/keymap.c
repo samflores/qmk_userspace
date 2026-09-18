@@ -310,6 +310,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM pointer_combo[] = {SF_T, SF_C, COMBO_END};
 const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
+const uint16_t PROGMEM engram_colemak_combo[] = {KC_G, KC_P, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
 const uint16_t PROGMEM engram_combo[]  = {KC_Z, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM web_combo[]     = {SF_O, KC_W, COMBO_END};
@@ -338,6 +339,7 @@ combo_t key_combos[] = {
     [ENGRAM_TOGGLE] = COMBO_ACTION(engram_combo),
     COMBO(qwerty_combo, DF(LAYER_QWERTY)),   // QWERTY
     COMBO(colemak_combo, DF(LAYER_BASE)),    // COLEMAK
+    COMBO(engram_colemak_combo, DF(LAYER_BASE)), // COLEMAK from Engrammer (G + P)
     COMBO(web_combo, OSL(LAYER_WEB)),        // Web
     COMBO(tools_combo, OSL(LAYER_TOOLS)),    // Tools
     COMBO(acute_combo, RALT(KC_QUOT)),       // '
