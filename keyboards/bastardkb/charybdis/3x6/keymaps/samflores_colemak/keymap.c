@@ -313,6 +313,14 @@ const uint16_t PROGMEM colemak_combo[] = {KC_B, KC_N, COMBO_END};
 const uint16_t PROGMEM engram_colemak_combo[] = {KC_G, KC_P, COMBO_END};
 const uint16_t PROGMEM qwerty_combo[]  = {KC_B, KC_K, COMBO_END};
 const uint16_t PROGMEM engram_combo[]  = {KC_Z, KC_SLSH, COMBO_END};
+/* Engrammer pointer chords, anchored on the J hold key (EN_J) so they only
+ * match on the Engrammer layer. Same physical pairs as hold-C + key on
+ * Colemak: k is v's position (drag scroll), x is x's (vertical), g is z's
+ * (horizontal), and space clicks. */
+const uint16_t PROGMEM engram_drag_combo[]   = {EN_J, KC_K, COMBO_END};
+const uint16_t PROGMEM engram_vscroll_combo[] = {EN_J, KC_X, COMBO_END};
+const uint16_t PROGMEM engram_hscroll_combo[] = {EN_J, KC_G, COMBO_END};
+const uint16_t PROGMEM engram_click_combo[]   = {EN_J, KC_SPC, COMBO_END};
 const uint16_t PROGMEM web_combo[]     = {SF_O, KC_W, COMBO_END};
 const uint16_t PROGMEM tools_combo[]   = {SF_O, SF_T, COMBO_END};
 const uint16_t PROGMEM acute_combo[]   = {SF_E, SF_T, COMBO_END};
@@ -340,6 +348,10 @@ combo_t key_combos[] = {
     COMBO(qwerty_combo, DF(LAYER_QWERTY)),   // QWERTY
     COMBO(colemak_combo, DF(LAYER_BASE)),    // COLEMAK
     COMBO(engram_colemak_combo, DF(LAYER_BASE)), // COLEMAK from Engrammer (G + P)
+    COMBO(engram_drag_combo, DRGSCRL),       // Engrammer drag scroll (J + K)
+    COMBO(engram_vscroll_combo, SCROLL_V_ONLY), // Engrammer vertical scroll (J + X)
+    COMBO(engram_hscroll_combo, SCROLL_H_ONLY), // Engrammer horizontal scroll (J + G)
+    COMBO(engram_click_combo, MS_BTN1),      // Engrammer left click (J + Space)
     COMBO(web_combo, OSL(LAYER_WEB)),        // Web
     COMBO(tools_combo, OSL(LAYER_TOOLS)),    // Tools
     COMBO(acute_combo, RALT(KC_QUOT)),       // '
