@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "bk_pointing_device.h"
 #include "raw_hid.h"
 
 enum charybdis_keymap_layers {
@@ -185,9 +186,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        XXXXXXX, KC_LGUI, KC_LCTL, KC_LALT, KC_LSFT, XXXXXXX,    KC_WBAK, KC_RSFT, KC_RALT, KC_RCTL, KC_RGUI, XXXXXXX,
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
-       XXXXXXX, SCROLL_H_ONLY, SCROLL_V_ONLY, _______, DRGSCRL, XXXXXXX,    KC_WFWD, DRGSCRL, _______, SNIPING, KC_BTN3, XXXXXXX,
+       XXXXXXX, SCROLL_H_ONLY, SCROLL_V_ONLY, _______, DRGSCRL, XXXXXXX,    KC_WFWD, DRGSCRL, _______, SNIPING, MS_BTN3, XXXXXXX,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_BTN3, KC_BTN1, KC_BTN2,    KC_BTN2, KC_BTN1
+                                  MS_BTN3, MS_BTN1, MS_BTN2,    MS_BTN2, MS_BTN1
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -363,11 +364,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case SCROLL_H_ONLY:
             scroll_axis = SCROLL_AXIS_H_ONLY;
-            charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
+            bkpd_set_pointer_dragscroll_enabled(record->event.pressed);
             break;
         case SCROLL_V_ONLY:
             scroll_axis = SCROLL_AXIS_V_ONLY;
-            charybdis_set_pointer_dragscroll_enabled(record->event.pressed);
+            bkpd_set_pointer_dragscroll_enabled(record->event.pressed);
             break;
     }
     return true;
@@ -375,9 +376,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 /* If CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE is defined, merge this with
  * the auto-pointer-layer hook above (only one definition is allowed). */
-/** \brief Zero the unwanted scroll axis (runs after charybdis' conversion). */
+/** \brief Zero the unwanted scroll axis (runs after the pointing module's conversion). */
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    if (charybdis_get_pointer_dragscroll_enabled()) {
+    if (bkpd_get_pointer_dragscroll_enabled()) {
         switch (scroll_axis) {
             case SCROLL_AXIS_H_ONLY:
                 mouse_report.v = 0;
@@ -394,7 +395,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 
 #    ifdef CHARYBDIS_AUTO_SNIPING_ON_LAYER
 layer_state_t layer_state_set_user(layer_state_t state) {
-    charybdis_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
+    bkpd_set_pointer_sniping_enabled(layer_state_cmp(state, CHARYBDIS_AUTO_SNIPING_ON_LAYER));
     return state;
 }
 #    endif // CHARYBDIS_AUTO_SNIPING_ON_LAYER
