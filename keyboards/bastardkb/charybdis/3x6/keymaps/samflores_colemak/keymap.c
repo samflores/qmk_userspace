@@ -19,17 +19,21 @@
 #include "raw_hid.h"
 
 enum charybdis_keymap_layers {
+    /* Key lookups use the highest active layer, so every layout that can
+     * become the default layer must sit BELOW the momentary layers it
+     * needs to override (NUMBER, NAVIG, POINTER, ...). Keep all base
+     * layouts at the bottom of the enum. */
     LAYER_BASE = 0,
+    LAYER_QWERTY,
+    LAYER_ENGRAMMER,
     LAYER_NUMBER,
     LAYER_NAVIG,
     LAYER_POINTER,
-    LAYER_QWERTY,
     LAYER_WIN_MGR,
     LAYER_FN,
     LAYER_MEDIA,
     LAYER_WEB,
     LAYER_TOOLS,
-    LAYER_ENGRAMMER,
 };
 
 /** \brief Automatically enable sniping-mode on the pointer layer. */
